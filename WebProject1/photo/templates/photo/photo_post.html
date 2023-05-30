@@ -8,7 +8,11 @@
         </h1>
         <section>
             <div>
+                {% if pk == None %}
                 <h2>New Photo</h2>
+                {% elif pk != None %}
+                <h2>Photo Edit</h2>
+                {% endif %}
                 <form method="POST">
                     {% csrf_token %} {{ form.as_p }}
                     <!-- {% csrf_token %} : 보안을 위해서 작성 -->

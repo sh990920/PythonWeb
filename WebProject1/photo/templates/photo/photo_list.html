@@ -12,7 +12,7 @@
         </h3>
         <section>
             {% for photo in photos %}
-            <div>
+            <div style="border: 1px solid black;">
                 <h2>
                     <a href="{% url 'photo_detail' pk=photo.pk %}">{{ photo.title }}</a>
                     <!-- url : urls 안에 있는 name 값으로 불러오기, pk : 객체.pk로 불러오기, 띄어쓰기 금지 -->

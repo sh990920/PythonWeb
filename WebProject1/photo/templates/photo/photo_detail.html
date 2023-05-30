@@ -7,6 +7,9 @@
         <h3>
             <a href="{% url 'photo_adit' pk=photo.pk %}">수정하기</a>
         </h3>
+        <h3>
+            <a href="{% url 'photo_delete' pk=photo.pk %}">삭제하기</a>
+        </h3>
         <section>
             <div>
                 <img src="{{ photo.image }}" alt="{{ photo.title }}" width="300">
