@@ -39,3 +39,7 @@ def todo_done(request, pk):
     todo.complete = True
     todo.save()
     return redirect("todo_list")
+
+def done_list(request):
+    dones = Todo.objects.filter(complete=True)
+    return render(request, "todo/done_list.html", {"dones" : dones})
