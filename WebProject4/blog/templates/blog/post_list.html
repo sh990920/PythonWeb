@@ -14,7 +14,7 @@
         {% endif %}
     </a>
     <div class="card-body">
-        <div class="small text-muted">{{ post.created_at }}</div>
+        <div class="small text-muted">{{ post.created_at }} by {{ post.author | upper }}</div>
         <h2 class="card-title h4">{{ post.title }}</h2>
         {% if post.hook_text %}
         <h5 class="card-text text-muted">{{ post.hook_text }}</h5>
