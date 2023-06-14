@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+    <input type="button" value="뒤로가기" onclick="location.href='/'">
+    <form>
+        {% csrf_token %}
+        <div>
+            <label>ID : </label>
+            <input type="text" name="memberId" id="memberId">
+            <input type="button" value="중복검사" onclick="checkId()">
+        </div>
+        <div>
+            <label>PW : </label>
+            <input type="text" name="password" id="password">
+        </div>
+        <div>
+            <label>PW 다시쓰기 : </label>
+            <input type="text" id="passwordCheck" onkeyup="passwordEqualse()">
+        </div>
+        <div id="passwordNotEqualse">
+
+        </div>
+        <div>
+            <label>Nickname : </label>
+            <input type="text" name="nickname" id="nickname">
+            <input type="button" value="중복검사" onclick="checkNickname()">
+        </div>
+        <div><label>좋아하는 공연 분야</label>
+            <select name="like_category" id="like_category">
+                <option value="">공연분야</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div>profile</div>
+        <input type="button" value="회원가입" onclick="signUp(this.form)">
+    </form>
+    <input type="button" value="아이디 중복 체크 결과" onclick="checkAll()">
+</body>
+<script src="{% static 'js/httpRequest.js' %}"></script>
+<script>
+    let idCheck = false;
+    let isPasswordEqualse = false;
+    let nicknameCheck = false;
+
+    function checkId(){
+        let memberId = document.getElementById("memberId").value;
+        if(memberId == ''){
+            alert("아이디를 입력해주세요");
+            return;
+        }
+        let url = "/member/idCheck";
+        let param = "memberId=" + memberId;
+        sendRequest(url, param, resId, "GET");
+    }
+    function resId(){
+        if ( xhr.readyState == 4 && xhr.status == 200 ) {
+            var data = xhr.responseText;
+            if(data == 'no') {
+                alert('아이디 중복');
+                return;
+            } else {
+                alert('아이디 중복 없음');
+                idCheck = true;
+            }
+        }
+    }
+
+    function passwordEqualse(){
+        let password = document.getElementById("password").value;
+        let passwordCheck = document.getElementById("passwordCheck").value;
+        let passwordNotEqualse = document.getElementById("passwordNotEqualse");
+        if(password != passwordCheck){
+            passwordNotEqualse.innerHTML = "비밀번호가 일치하지 않습니다.";
+            isPasswordEqualse = false;
+        }else{
+            passwordNotEqualse.innerHTML = "비밀번호 일치";
+            isPasswordEqualse = true;
+        }
+    }
+
+    function checkNickname(){
+        let nickname = document.getElementById("nickname").value;
+        if(nickname == ''){
+            alert("닉네임을 입력해주세요");
+            return;
+        }
+        let url = "/member/nicknameCheck";
+        let param = "nickname=" + nickname;
+        sendRequest(url, param, resNickname, "GET");
+    }
+    function resNickname(){
+        if ( xhr.readyState == 4 && xhr.status == 200 ) {
+            var data = xhr.responseText;
+            if(data == 'no') {
+                alert('닉네임 중복');
+                return;
+            } else {
+                alert('닉네임 중복 없음');
+                nicknameCheck = true;
+            }
+        }
+    }
+
+    function signUp(f){
+        let memberId = f.memberId.value;
+        let password = f.password.value;
+        let nickname = f.nickname.value;
+        let like_category = f.like_category.value;
+
+        if(idCheck != true){
+            alert("아이디 중복검사를 진행하세요");
+            return;
+        }
+        if(isPasswordEqualse != true){
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+        if(nicknameCheck != true){
+            alert("닉네임 중복검사를 진행하세요");
+            return;
+        }
+        let url = "/member/signUp/";
+        let param = "memberId=" + memberId +
+                    "&password=" + password +
+                    "&nickname=" + nickname +
+                    "&like_category=" + like_category;
+        sendRequest(url, param, resSignUp, "POST");
+    }
+    function resSignUp(){
+        if ( xhr.readyState == 4 && xhr.status == 200 ) {
+            var data = xhr.responseText;
+            if(data == 'no') {
+                alert('회원가입 실패');
+                return;
+            } else {
+                alert('회원가입 성공');
+                location.href= "/";
+            }
+        }
+    }
+
+</script>
+</html>
