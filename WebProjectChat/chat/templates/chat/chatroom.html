@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅방 페이지</title>
+</head>
+<body onkeydown="enterKey();">
+    <h1>채팅방 페이지</h1>
+    {% for chat in chatList %}
+        {% if chat.memberIdx == memberPK %}
+            <div style="color: blue; font-weight: bold; font-size: 20px;">{{ chat.content }}</div>
+        {% else %}
+            <div style="color: red; font-size: 20px;">{{ chat.content }}</div>
+        {% endif %}
+    {% endfor %}
+    <div>
+        <form method="GET", action="/chat/chatting/">
+            <input type="hidden" value="{{ memberPK }}" name="memberIdx">
+            <input type="hidden" value="{{ mettingPK }}" name="mettingIdx">
+            <span> 채팅 : </span>
+            <input type="text" name="content" onclick="chatting()">
+            <input type="submit" value="전송">
+        </form>
+    </div>
+</body>
+<script>
+    let is_click = false;
+    function chatting(){
+        is_click = true;
+    }
+    function chatting_end(){
+        is_click = false;
+    }
+    function enterKey(){
+        if (window.event.keyCode == 13){
+            chatting_end();
+        }
+    }
+    setInterval(function(){
+        if(is_click == false){
+            location.reload();
+        }
+    }, 1000);
+</script>
+</html>

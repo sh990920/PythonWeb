@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지(아마 동행글 페이지)</title>
+</head>
+<body>
+    <h1>채팅 입장전</h1>
+    <p>현재는 동행글과 유저 정보가 없기 떄문에 랜덤으로 작성해서 넣어줄 예정</p>
+    <ul>
+        <li>동행글 PK : 1</li>
+        <li>유저 PK : 1</li>
+        <a href="{% url 'chatroom' mettingPK=1 memberPK=1 %}">채팅방 입장</a>
+    </ul>
+    <ul>
+        <li>동행글 PK : 1</li>
+        <li>유저 PK : 2</li>
+        <a href="{% url 'chatroom' mettingPK=1 memberPK=2 %}">채팅방 입장</a>
+    </ul>
+    <ul>
+        <li>동행글 PK : 1</li>
+        <li>유저 PK : 3</li>
+        <a href="{% url 'chatroom' mettingPK=1 memberPK=3 %}">채팅방 입장</a>
+    </ul>
+    <ul>
+        <li>동행글 PK : 2</li>
+        <li>유저 PK : 1</li>
+        <a href="{% url 'chatroom' mettingPK=2 memberPK=1 %}">채팅방 입장</a>
+    </ul>
+    <ul>
+        <li>동행글 PK : 2</li>
+        <li>유저 PK : 2</li>
+        <a href="{% url 'chatroom' mettingPK=2 memberPK=2 %}">채팅방 입장</a>
+    </ul>
+</body>
+</html>

@@ -46,7 +46,6 @@ def signUp(request):
         if form.is_valid():
             result = "yes"
             member = form.save()
-            # member.save()
     return HttpResponse(result)
 
 # 로그인 페이지
