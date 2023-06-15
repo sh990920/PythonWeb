@@ -12,7 +12,30 @@ MySQL : v8.0.33 for macOS12.6 arm64 (Homebrew)
 conda : v23.3.1
 Visual Studio Code : v1.78.2 (Universal)
 
------ 실행 시키기 위한 조건 -----
+----- 실행 시키기 위한 조건1 -----
+이 프로젝트를 실행하기 전에 외부의 설정에 의해 코드가 실행이 안될 수 있다.
+따라서 가상환경을 만들어 가상환경을 사용해서 코드를 실행하는 것이 좋다.
+명령어들은 모두 터미널에서 실행한다.
+
+1. 가상환경 리스트 확인하기
+- conda env list
+
+2. 가상환경 생성하기
+- conda create -n '가상환경이름'
+
+3. 가상환경이 잘 만들어졌는지 확인하기
+- conda env list
+
+4. 가상환경 실행하기
+4-1. 윈도우에서 가상환경 실행하기
+- conda activate myvenv
+4-2 맥에서 가상환경 실행하기
+- source activate myvenv
+
+5. 가상환경 종료하기(테스트 완료 이후)
+- conda deactivate
+
+----- 실행 시키기 위한 조건2 -----
 이 프로젝트에 MySQL 을 연동하기 위해서 기본적으로 설치해야되는 모듈이있다.
 
 아래의 명령어로 mysqlclient 를 설치한다.
