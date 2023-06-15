@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/">메인으로</a>
+    <p>
+        <a href="{% url 'create_post' %}"><i class="bi-plus"></i>Add post</a>
+    </p>
+    {% for post in page %}
+    <div style="border: 1px solid black;">
+        <h1><a href="{% url 'show_post_detail' pk=post.pk %}">{{post.showTitle}}</a></h1>
+        <h3>{{post.showCategory}}</h3>
+        <h3>{{post.showPeriod}}</h3>
+    </div>
+    {% endfor %}
+    <h5>
+        {% if page.has_previous %}
+        <a href="?page={{page.previous_page_number}}">Prev</a>
+        {% endif %}
+        Page {{page.number}} of {{page.paginator.num_pages}}
+        {% if page.has_next %}
+            <a href="?page={{page.next_page_number}}">Next</a>
+        {% endif %}
+    </h5>
+</body>
+</html>

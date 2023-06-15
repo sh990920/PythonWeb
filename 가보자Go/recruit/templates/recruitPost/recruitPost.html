@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동행글 상세보기</title>
+</head>
+<body>
+    <h1>동행글 상세보기</h1>
+    <a href="/">메인으로</a>
+    <ul>
+        <li>{{ recruit.recruitTitle }}</li>
+        <li>{{ recruit.recruitContent }}</li>
+        <li>{{ member.nickname }}</li>
+        <li>{{ user_pk }}</li>
+        <li>
+            <a href="{% url 'chatroom' mettingPK=recruit.pk memberPK=user_pk %}">채팅방 입장</a>
+        </li>
+    </ul>
+    <!-- 채팅만 이어주면 기능 끝 -->
+</body>
+</html>

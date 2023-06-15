@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>게시판 상세보기</div>
+    <p>
+        <a href="{% url 'edit_post' pk=post.pk %}" class="btn btn-primary" style="float:right">수정</a>
+        <a href="{% url 'remove_post' pk=post.pk %}" class="btn btn-primary" style="float:right">삭재</a>
+    </p>
+    <div>
+        <h1>{{post.showTitle}}</h1>
+    </div>
+    <div>
+        <h5>{{post.showCategory}}</h5>
+        <h5>{{post.showPeriod}}</h5>
+        <h5>{{post.showTime}}</h5>
+        <h5>{{post.showPlace}}</h5>
+        <h5>{{post.showAgeGroup}}</h5>
+        <h5>{{post.ticketPrice}}</h5>
+    </div>
+    <div>
+        {{post.content}}
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+</head>
+<body>
+    <input type="button" value="뒤로가기" onclick="location.href='/'">
+    <form>
+        {% csrf_token %} {{ form.as_p }}
+        <input type="button" value="로그인" onclick="login(this.form)">
+    </form>
+</body>
+<script src="{% static 'js/httpRequest.js' %}"></script>
+<script>
+    function login(f){
+        let memberId = document.getElementById("id_memberId").value;
+        let password = document.getElementById("id_password").value;
+        if(memberId == ''){
+            alert("아이디를 입력하세요");
+            return;
+        }
+        if(password == ''){
+            alert("비밀번호를 입력하세요");
+            return;
+        }
+        let url = "/member/login/";
+        let param = "memberId=" + memberId +
+                    "&password=" + password;
+        sendRequest(url, param, resLogin, "POST");
+    }
+    function resLogin(){
+        if ( xhr.readyState == 4 && xhr.status == 200 ) {
+            var data = xhr.responseText;
+            if(data == 'no') {
+                alert('아이디 혹은 비밀번호가 일치하지 않습니다.');
+                return;
+            } else {
+                alert("로그인 성공, 메인 페이지로 들아갑니다.");
+                location.href="/";
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+</head>
+<body>
+    {% if member != None %}
+    <div style="height: 30px; background-color: gold;">
+        {{ member.memberId }}
+    </div>
+    <br/>
+    <div style="height: 30px; background-color: gold;">
+        {{ member.nickname }}
+    </div>
+    <br/>
+    <div style="height: 30px; background-color: gold;">
+        {{ member.like_category }}
+    </div>
+    <br/>
+    <div style="height: 30px; background-color: gold;">
+        {{ member.profile }}
+    </div>
+    {% else %}
+    <div>유저 정보 없음</div>
+    {% endif %}
+    <div>정보 수정기능 개발중</div>
+</body>
+</html>

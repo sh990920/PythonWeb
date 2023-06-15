@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/join_find.css' %}">
+    <title>회원가입</title>
+</head>
+<body>
+    <div class="container">
+        <form>
+            {% csrf_token %}
+            <h2>회원가입</h2>
+            <ul class="ulJoinInput">
+                <li class="liJoinInput">
+                    <label class="labelText">아이디</label><br>
+                    <input type="text" name="memberId" id="memberId" class="inputText" placeholder="아이디">
+                    <input type="button" value="중복검사" class="btnJoinForm" onclick="checkId()">
+                </li>
+                <li class="liJoinInput">
+                    <label class="labelText">비밀번호 </label><br>
+                    <input name="password" id="password" type="password" class="inputText" placeholder="영문, 숫자, 특수기호를 포함하여 5자리 이상" oninput="pwdCheck(this.form)"><br>
+                </li>
+                <li class="liJoinInput">
+                    <label id="pwdText1" class="errorMsg"></label>
+                </li>
+                <li class="liJoinInput">
+                    <label class="labelText">비밀번호 확인 </label><br>
+                    <input id="passwordCheck" name="passwordCheck" type="password" class="inputText" placeholder="영문, 숫자, 특수기호를 포함하여 5자리 이상" oninput="pwdCheck2(this.form)"><br>
+                </li>
+                <li class="liJoinInput">
+                    <label id="pwdText2" class="errorMsg"></label>
+                </li>
+                <li class="liJoinInput">
+                    <label class="labelText">닉네임(별명) </label><br>
+                    <input name="nickname" id="nickname" class="inputText" placeholder="10자 이내 닉네임" type="text">
+                    <input type="button" value="중복확인" class="btnJoinForm" onclick="checkNickname()"><br>
+                </li>
+                <li class="liJoinInput">
+                    <label id="nicknameCheck" class="errorMsg"></label>
+                </li>
+                <li class="liJoinInput">
+                    <label class="labelText">좋아하는 공연분야 </label><br>
+                    <select class="studyType" name="like_category" id="like_category">
+                        <option value="">공연분야</option>
+                        <option value="computer">컴퓨터 / IT</option>
+                        <option value="math">수학</option>
+                        <option value="management">경영 / 마케팅</option>
+                        <option value="design">디자인</option>
+                        <option value="education">교육</option>
+                        <option value="literature">문학</option>
+                        <option value="engineering">공학</option>
+                        <option value="language">언어</option>
+                        <option value="employment">취업</option>
+                        <option value="entrance">입시</option>
+                        <option value="etc">기타</option>
+                    </select>
+                </li>
+            </ul>
+            <div class="divBtnJoin">
+                <input type="button" value="가입" class="btnJoin" onclick="signUp(this.form)">
+                <input type="button" value="취소" class="btnJoin" onclick="location.href='/'">
+            </div>
+        </form>
+    </div>
+</body>
+<script src="{% static 'js/httpRequest.js' %}"></script>
+<script src="{% static 'js/signUp.js' %}"></script>
+</html>
